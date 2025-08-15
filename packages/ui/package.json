@@ -1,0 +1,59 @@
+{
+  "name": "dynamodb-ui",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Like our `ts-starter`, but optimized for monorepos.",
+  "author": "Chris Breuer <chris@stacksjs.org>",
+  "license": "MIT",
+  "homepage": "https://github.com/stacksjs/dynamodb-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stacksjs/dynamodb-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stacksjs/dynamodb-ui/issues"
+  },
+  "keywords": [
+    "dynamodb",
+    "ui",
+    "aws",
+    "database"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./*": {
+      "import": "./dist/*"
+    }
+  },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun --bun build.ts",
+    "lint": "bunx --bun eslint .",
+    "lint:fix": "bunx --bun eslint . --fix",
+    "fresh": "bunx rimraf node_modules/ bun.lock && bun i",
+    "changelog": "bunx changelogen --output CHANGELOG.md",
+    "prepublishOnly": "bun --bun run build",
+    "release": "bun run changelog && bunx bumpp package.json --all",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "bunfig": "^0.14.1"
+  },
+  "overrides": {
+    "unconfig": "0.3.10"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "bunx --bun eslint . --fix"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

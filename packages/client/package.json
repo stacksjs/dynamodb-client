@@ -1,0 +1,76 @@
+{
+  "name": "dynamodb-client",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "DynamoDB Client",
+  "author": "Chris Breuer <chris@stacksjs.org>",
+  "license": "MIT",
+  "homepage": "https://github.com/stacksjs/dynamodb-client#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stacksjs/dynamodb-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stacksjs/dynamodb-client/issues"
+  },
+  "keywords": [
+    "dynamodb",
+    "client",
+    "aws",
+    "database"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./*": {
+      "import": "./dist/*"
+    }
+  },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "dynamodb-client": "./dist/bin/cli.js"
+  },
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun --bun build.ts && bun run compile",
+    "compile": "bun build ./bin/cli.ts --compile --minify --outfile bin/dynamodb-client",
+    "compile:all": "bun run compile:linux-x64 && bun run compile:linux-arm64 && bun run compile:windows-x64 && bun run compile:darwin-x64 && bun run compile:darwin-arm64",
+    "compile:linux-x64": "bun build ./bin/cli.ts --compile --minify --target=bun-linux-x64 --outfile bin/dynamodb-client-linux-x64",
+    "compile:linux-arm64": "bun build ./bin/cli.ts --compile --minify --target=bun-linux-arm64 --outfile bin/dynamodb-client-linux-arm64",
+    "compile:windows-x64": "bun build ./bin/cli.ts --compile --minify --target=bun-windows-x64 --outfile bin/dynamodb-client-windows-x64.exe",
+    "compile:darwin-x64": "bun build ./bin/cli.ts --compile --minify --target=bun-darwin-x64 --outfile bin/dynamodb-client-darwin-x64",
+    "compile:darwin-arm64": "bun build ./bin/cli.ts --compile --minify --target=bun-darwin-arm64 --outfile bin/dynamodb-client-darwin-arm64",
+    "zip": "bun run zip:all",
+    "zip:all": "bun run zip:linux-x64 && bun run zip:linux-arm64 && bun run zip:windows-x64 && bun run zip:darwin-x64 && bun run zip:darwin-arm64",
+    "zip:linux-x64": "zip -j bin/dynamodb-client-linux-x64.zip bin/dynamodb-client-linux-x64",
+    "zip:linux-arm64": "zip -j bin/dynamodb-client-linux-arm64.zip bin/dynamodb-client-linux-arm64",
+    "zip:windows-x64": "zip -j bin/dynamodb-client-windows-x64.zip bin/dynamodb-client-windows-x64.exe",
+    "zip:darwin-x64": "zip -j bin/dynamodb-client-darwin-x64.zip bin/dynamodb-client-darwin-x64",
+    "zip:darwin-arm64": "zip -j bin/dynamodb-client-darwin-arm64.zip bin/dynamodb-client-darwin-arm64",
+    "lint": "bunx --bun eslint .",
+    "lint:fix": "bunx --bun eslint . --fix",
+    "fresh": "bunx rimraf node_modules/ bun.lock && bun i",
+    "changelog": "bunx changelogen --output CHANGELOG.md",
+    "prepublishOnly": "bun --bun run build && bun run compile:all && bun run zip",
+    "release": "bun run changelog && bunx bumpp package.json --all",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "bunfig": "^0.14.1"
+  },
+  "overrides": {
+    "unconfig": "0.3.10"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "bunx --bun eslint . --fix"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
