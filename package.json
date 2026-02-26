@@ -20,6 +20,7 @@
     "template"
   ],
   "scripts": {
+    "build": "bun --filter './packages/*' build",
     "fresh": "bunx rimraf node_modules/ bun.lock && bun i",
     "test": "bun test",
     "lint": "bunx --bun pickier lint .",
