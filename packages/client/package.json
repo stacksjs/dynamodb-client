@@ -53,8 +53,8 @@
     "zip:windows-x64": "zip -j bin/dynamodb-client-windows-x64.zip bin/dynamodb-client-windows-x64.exe",
     "zip:darwin-x64": "zip -j bin/dynamodb-client-darwin-x64.zip bin/dynamodb-client-darwin-x64",
     "zip:darwin-arm64": "zip -j bin/dynamodb-client-darwin-arm64.zip bin/dynamodb-client-darwin-arm64",
-    "lint": "bunx --bun eslint .",
-    "lint:fix": "bunx --bun eslint . --fix",
+    "lint": "bunx --bun pickier .",
+    "lint:fix": "bunx --bun pickier . --fix",
     "fresh": "bunx rimraf node_modules/ bun.lock && bun i",
     "changelog": "bunx changelogen --output CHANGELOG.md",
     "prepublishOnly": "bun --bun run build && bun run compile:all && bun run zip",
@@ -62,15 +62,9 @@
     "test": "bun test"
   },
   "devDependencies": {
-    "bunfig": "^0.14.1"
-  },
-  "overrides": {
-    "unconfig": "0.3.10"
+    "bunfig": "^0.15.6"
   },
   "lint-staged": {
-    "*.{js,ts}": "bunx --bun eslint . --fix"
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+    "*.{js,ts}": "bunx --bun pickier . --fix"
+  }
 }

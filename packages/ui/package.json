@@ -45,15 +45,9 @@
     "test": "bun test"
   },
   "devDependencies": {
-    "bunfig": "^0.14.1"
-  },
-  "overrides": {
-    "unconfig": "0.3.10"
+    "bunfig": "^0.15.6"
   },
   "lint-staged": {
     "*.{js,ts}": "bunx --bun eslint . --fix"
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+  }
 }
