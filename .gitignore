@@ -10,4 +10,9 @@ logs
 node_modules
 temp
 docs/.vitepress/cache
+<<<<<<< HEAD
 /pantry
+=======
+.zed
+.cursor
+>>>>>>> 675667a (chore: remove .zed and .cursor folders)
