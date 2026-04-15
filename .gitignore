@@ -16,3 +16,4 @@ docs/.vitepress/cache
 .zed
 .cursor
 >>>>>>> 675667a (chore: remove .zed and .cursor folders)
+pantry
