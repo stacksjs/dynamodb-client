@@ -66,5 +66,8 @@
   },
   "lint-staged": {
     "*.{js,ts}": "bunx --bun pickier . --fix"
+  },
+  "dependencies": {
+    "cac": "^7.0.0"
   }
 }
