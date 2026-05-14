@@ -62,7 +62,7 @@
     "test": "bun test"
   },
   "devDependencies": {
-    "bunfig": "^0.15.6"
+    "bunfig": "^0.15.13"
   },
   "lint-staged": {
     "*.{js,ts}": "bunx --bun pickier . --fix"
